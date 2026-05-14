@@ -186,40 +186,24 @@ footer{
 <div class="stats">
 
 <div class="stat-box">
-<h2 id="donorCount">41</h2>
+<h2 id="donorCount">0</h2>
 <p>Toplam Donör</p>
 </div>
 
 <div class="stat-box">
-<h2 id="bloodCount">7</h2>
+<h2 id="bloodCount">0</h2>
 <p>Kan Ünitesi</p>
+</div>
+
+<div class="stat-box">
+<h2 id="bloodlist">0</h2>
+<p>Kan Gruplarının Listesi</p>
 </div>
 
 <div class="stat-box">
 <h2>8</h2>
 <p>Kan Grubu</p>
 </div>
-
-<div class="stat-box">
-<h2>25</h2>
-<p>A+/A-</p>
-</div>
-
-<div class="stat-box">
-<h2>9</h2>
-<p>B+/B-</p>
-</div>
-
-<div class="stat-box">
-<h2>4</h2>
-<p>AB+/AB-</p>
-</div>
-
-<div class="stat-box">
-<h2>3</h2>
-<p>0+/0-</p>
-</div>
-
 </div>
 
 <!-- FORM -->
@@ -283,7 +267,7 @@ footer{
 </div>
 
 <footer>
-© 2026 Kan Bankası Sistemi | HTML CSS JavaScript
+© 2026 Kan Bankası Sistemi | HTML CSS İbrahim Hoca üsküdar
 </footer>
 
 <script>
@@ -350,8 +334,28 @@ function tabloGoster(){
     document.getElementById("liste").innerHTML = tablo;
 
     document.getElementById("donorCount").innerText = donors.length;
+	
+	document.getElementById("bloodCount").innerText = donors.length;
 
-    document.getElementById("bloodCount").innerText = donors.length;
+  let grupSayilari = {};
+
+donors.forEach(d => {
+
+    if(grupSayilari[d.kan]){
+        grupSayilari[d.kan]++;
+    }else{
+        grupSayilari[d.kan] = 1;
+    }
+
+});
+
+let sonuc = "";
+
+for(let grup in grupSayilari){
+    sonuc += grup + ": " + grupSayilari[grup] + " ";
+}
+
+document.getElementById("bloodlist").innerText = sonuc;
 }
 
 /* TEMİZLE */
